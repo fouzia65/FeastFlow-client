@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaEyeSlash, FaRegEye } from 'react-icons/fa';
 import { Link } from 'react-router';
+import { AuthContext } from '../Context/AuthContext';
 
 const SignIn = () => {
     const [open, setOpen] = useState(false)
+    const {signIn,  setUser,  googleSignIn  } = useContext(AuthContext)
+    const handleSignIn = e =>{
+      e.preventDefault()
+         const form = e.target;
+       const email = form.email.value
+       const password = form.password.value
+       signIn(email, password).then(result => setUser(result.user) )
+    }
+    const handleGoogleSignIn = () =>{
+      googleSignIn().then(result => setUser(result.user))
+    }
     return (
            <div className="min-h-screen flex items-center justify-center bg-gray-200">
       <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Register</h2>
 
-        <form className="space-y-4">
+        <form onSubmit={handleSignIn} className="space-y-4">
         
 
           <div>
@@ -46,13 +58,14 @@ const SignIn = () => {
           >
             Register
           </button>
-             <button
+     
+        </form>
+                <button onClick={handleGoogleSignIn}
          
-          className="w-full  bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-600 transition"
+          className="w-full  mt-4 bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-600 transition"
         >
           Continue with Google
         </button>
-        </form>
 
         <p className="text-center text-sm text-gray-600 mt-4">
           Already have an account?
