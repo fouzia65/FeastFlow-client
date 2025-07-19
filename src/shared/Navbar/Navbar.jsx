@@ -1,8 +1,55 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Context/AuthContext';
+import { NavLink } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext)
+    const handleSignOut = () =>{
+    logOut().then(() =>{
+        Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "signOut successfully",
+  showConfirmButton: false,
+  timer: 1500
+});
+    })
+}
+const link = <>
+<NavLink>home</NavLink>
+</>
+
     return (
-        <div>
+         <div class="navbar sticky bg-gray-400/50 backdrop-blur-md top-0 z-50 shadow-sm">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                    </div>
+                    <ul
+                        tabindex="0"
+                        class="menu menu-sm dropdown-content text-white bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        {link}
+                    </ul>
+                </div>
+                <a class="btn btn-ghost text-xl">daisyUI</a>
+            </div>
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu text-white menu-horizontal px-1">
+                    {link}
+                </ul>
+            </div>
+            <div class="navbar-end gap-2 mr-6">
+                {
+                    user ? <button onClick={handleSignOut} className='btn'>signOut</button> : <>
+                        <NavLink to={'/signUp'} className={'btn'}>Register</NavLink>
+                        <NavLink to={'/signIn'} className={'btn bg-orange-500'}>LogIn</NavLink>
+                    </>
+                }
+
+            </div>
+            
             
         </div>
     );

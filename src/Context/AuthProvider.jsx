@@ -3,6 +3,7 @@ import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from '../firebase/firebase.init';
 import { GoogleAuthProvider } from "firebase/auth";
+import axios from 'axios';
 
 const AuthProvider = ({children}) => {
     const [ user , setUser] = useState()
@@ -33,16 +34,25 @@ const AuthProvider = ({children}) => {
        return signOut(auth)
     }
 
-     useEffect(()=>{
-         const unSubscribe = onAuthStateChanged(auth , (currentUser)=>{
-            setUser(currentUser)
-            console.log(currentUser)
-            
-        })
-        return () =>{
-            unSubscribe()
+    useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+        console.log(currentUser);
+
+        if (currentUser) {
+            axios.get('http://localhost:3000/', {
+                headers: {
+                    authorization: `Bearer ${currentUser.accessToken}`
+                }
+            })
+            .then(res => console.log(res.data))
+            .catch(err => console.error(err));
         }
-    },[])
+    });
+
+    return () => unSubscribe();
+}, []);
+
   
     const allInfo = {
         createUser,

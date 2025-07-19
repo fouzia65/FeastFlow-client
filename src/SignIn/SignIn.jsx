@@ -19,7 +19,7 @@ const SignIn = () => {
     return (
            <div className="min-h-screen flex items-center justify-center bg-gray-200">
       <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Register</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Sign In</h2>
 
         <form onSubmit={handleSignIn} className="space-y-4">
         
@@ -56,7 +56,7 @@ const SignIn = () => {
             type="submit"
             className="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition"
           >
-            Register
+            LogIn
           </button>
      
         </form>
