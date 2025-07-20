@@ -1,11 +1,12 @@
 import axios from 'axios';
-import React, {   useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const AddFood = () => {
-    const {user} = useContext(AuthContext)
-    console.log(user)
-     const [food, setFood] = useState({
+  const { user } = useContext(AuthContext)
+  
+  const [food, setFood] = useState({
     name: '',
     image: '',
     quantity: '',
@@ -17,16 +18,24 @@ const AddFood = () => {
   const handleChange = (e) => {
     setFood({ ...food, [e.target.name]: e.target.value });
   };
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {...food, ownerEmail : user.email , status : 'available', ownerName : user.displayName, ownerPhoto : user.photoURL }
-    console.log(data)
-     axios.post('http://localhost:3000/addFood', data).then(res => {
-        console.log(res);
-     })
+    const data = { ...food, ownerEmail: user.email, status: 'available', ownerName: user.displayName, ownerPhoto: user.photoURL }
+    
+    axios.post('https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/addFood', data).then(res => {
+      console.log(res);
+        
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Added food",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    })
   };
-    return (
-     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-2xl shadow-md">
+  return (
+    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-2xl shadow-md">
       <h2 className="text-2xl font-bold mb-4 text-center">Add Food Donation</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -88,7 +97,7 @@ const AddFood = () => {
         </button>
       </form>
     </div>
-    );
+  );
 };
 
 export default AddFood;

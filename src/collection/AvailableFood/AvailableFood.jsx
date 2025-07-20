@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
-import { useLoaderData } from 'react-router';
+import React, {  useState } from 'react';
+
 import FoodCard from './FoodCard';
+import { useLoaderData } from 'react-router';
 
 const AvailableFood = () => {
     const data = useLoaderData()
+   
     const [columns, setColumns] = useState(false)
+    console.log(data);
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+    
+       
+    
     const gridCols = columns ? 'lg:grid-cols-2' : 'lg:grid-cols-3';
     console.log(data)
     return (

@@ -7,6 +7,7 @@ import axios from 'axios';
 
 const AuthProvider = ({children}) => {
     const [ user , setUser] = useState()
+    const [loading, setLoading] = useState(true)
     console.log(user)
     const auth = getAuth(app)
     const provider = new GoogleAuthProvider();
@@ -37,10 +38,10 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
-        console.log(currentUser);
+        setLoading(false)
 
         if (currentUser) {
-            axios.get('http://localhost:3000/', {
+            axios.get('https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app', {
                 headers: {
                     authorization: `Bearer ${currentUser.accessToken}`
                 }
@@ -61,7 +62,9 @@ const AuthProvider = ({children}) => {
          updateUser,
          signIn,
          logOut,
-         googleSignIn 
+         googleSignIn ,
+         loading,
+         setLoading
         
     }
     return (

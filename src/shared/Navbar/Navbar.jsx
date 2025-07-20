@@ -2,26 +2,36 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { NavLink } from 'react-router';
 import Swal from 'sweetalert2';
+import './Navbar.css'
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
-    const handleSignOut = () =>{
-    logOut().then(() =>{
-        Swal.fire({
-  position: "top-end",
-  icon: "success",
-  title: "signOut successfully",
-  showConfirmButton: false,
-  timer: 1500
-});
-    })
-}
-const link = <>
-<NavLink>home</NavLink>
-</>
+    const handleSignOut = () => {
+        logOut().then(() => {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "signOut successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        })
+    }
+    const link = <>
+        <NavLink to={'/'}>Home</NavLink>
+        <NavLink to={'/availableFood'}>Available Foods</NavLink>
+
+        {user && <>
+            <NavLink to={'/addFoods'}>Add Food </NavLink>
+            <NavLink to={'/myFood'}>Manage My Foods</NavLink>
+            <NavLink to={'/myRequest'}>My Food Request</NavLink>
+        </>}
+
+
+    </>
 
     return (
-         <div class="navbar sticky bg-gray-400/50 backdrop-blur-md top-0 z-50 shadow-sm">
+        <div class="navbar sticky bg-gray-400/50 backdrop-blur-md top-0 z-50 shadow-sm">
             <div class="navbar-start">
                 <div class="dropdown">
                     <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -29,14 +39,17 @@ const link = <>
                     </div>
                     <ul
                         tabindex="0"
-                        class="menu menu-sm dropdown-content text-white bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        class="menu menu-sm dropdown-content text-black bg-base-100 rounded-box z-1 mt-3 w-52 space-x-3 p-2 shadow">
                         {link}
                     </ul>
                 </div>
-                <a class="btn btn-ghost text-xl">daisyUI</a>
+                <div className='flex'>
+                    <a class="btn btn-ghost text-xl">FeastFlow img</a>
+                    <img src="https://i.postimg.cc/6Qt1wr9t/p5.png" className='w-[5%]' alt="" />
+                </div>
             </div>
             <div class="navbar-center hidden lg:flex">
-                <ul class="menu text-white menu-horizontal px-1">
+                <ul class="menu text-black space-x-2 menu-horizontal px-1">
                     {link}
                 </ul>
             </div>
@@ -49,8 +62,8 @@ const link = <>
                 }
 
             </div>
-            
-            
+
+
         </div>
     );
 };

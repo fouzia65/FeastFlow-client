@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-
-const FoodCard = ({ info }) => {
-    const { name, image, quantity,  expiry, ownerName, ownerEmail, ownerPhoto, status, _id } = info;
+const FeaturedCard = ({info}) => {
+      const { name, image, quantity,  expiry, ownerName, ownerEmail, ownerPhoto, status, _id } = info;
     return (
-        <div className="max-w-sm static bg-black-300/10 backdrop-blur-md border border-white/20 rounded-3xl shadow-lg  transition hover:scale-105 duration-300">
+       <div className="max-w-sm static bg-black-300/10 backdrop-blur-md border border-white/20 rounded-3xl shadow-lg  transition hover:scale-105 duration-300">
             <img src={image} alt={name} className="w-full h-52 object-cover" />
 
             <div className="p-5 space-y-3">
@@ -38,4 +37,4 @@ const FoodCard = ({ info }) => {
     );
 };
 
-export default FoodCard;
+export default FeaturedCard;
