@@ -20,17 +20,17 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement: <p className="text-center text-red-500">Server থেকে ডাটা আনতে সমস্যা হচ্ছে। একটু পরে চেষ্টা করুন।</p>,
+    // errorElement: <p className="text-center text-red-500">Server থেকে ডাটা আনতে সমস্যা হচ্ছে। একটু পরে চেষ্টা করুন।</p>,
     children: [
       {
         path: '/',
-        element: <Home></Home>,
         loader: async () => {
-          const res = await axios.get('https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/featuredFood');
+          const res = await axios.get('https://server-side-topaz.vercel.app/featuredFood');
           return res.data;
         },
-        HydrateFallback: <Loading></Loading>,
-        errorElement: <p className="text-center text-red-500">Server থেকে ডাটা আনতে সমস্যা হচ্ছে। একটু পরে চেষ্টা করুন।</p>,
+        // HydrateFallback: <Loading></Loading>,
+        element: <Home></Home>,
+        // errorElement: <p className="text-center text-red-500">Server থেকে ডাটা আনতে সমস্যা হচ্ছে। একটু পরে চেষ্টা করুন।</p>,
       },
       {
         path: '/signIn',
@@ -46,16 +46,16 @@ export const router = createBrowserRouter([
       },
       {
         path: '/availableFood',
+        loader: () => fetch('https://server-side-topaz.vercel.app/availableFood').then(res => res.json()),
+        // HydrateFallback: <Loading></Loading>,
         element: <AvailableFood></AvailableFood>,
-        loader: () => fetch('https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/availableFood').then(res => res.json()),
-        HydrateFallback: <Loading></Loading>
 
       },
       {
         path: '/viewDetails/:foodId',
+        loader: ({ params }) => fetch(`https://server-side-topaz.vercel.app/details/${params.foodId}`).then(res => res),
+        // HydrateFallback: <Loading></Loading>,
         element: <PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/details/${params.foodId}`).then(res => res),
-        HydrateFallback: <Loading></Loading>
       },
       {
         path: '/myFood',
@@ -65,15 +65,15 @@ export const router = createBrowserRouter([
       },
       {
         path: '/update/:foodId',
+        loader: ({ params }) => fetch(`https://server-side-topaz.vercel.app/details/${params.foodId}`),
+        // HydrateFallback: <Loading></Loading>,
         element: <PrivateRoute><Update></Update></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/details/${params.foodId}`),
-        HydrateFallback: <Loading></Loading>
       },
       {
         path: '/myRequest',
+        loader: () => fetch('https://server-side-topaz.vercel.app/request'),
+        // HydrateFallback: <Loading></Loading>,
         element: <PrivateRoute><MyRequest></MyRequest></PrivateRoute>,
-        loader: () => fetch('https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/request'),
-        HydrateFallback: <Loading></Loading>
       }
     ]
   },

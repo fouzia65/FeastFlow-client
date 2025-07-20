@@ -41,7 +41,7 @@ const AuthProvider = ({children}) => {
         setLoading(false)
 
         if (currentUser) {
-            axios.get('https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app', {
+            axios.get('https://server-side-topaz.vercel.app', {
                 headers: {
                     authorization: `Bearer ${currentUser.accessToken}`
                 }

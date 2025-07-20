@@ -9,7 +9,7 @@ const FoodDetails = () => {
     const { user } = useContext(AuthContext)
     const { name, image, quantity, notes, expiry, ownerName, ownerEmail, ownerPhoto, status, _id, location } = data
     const handleRequest = () => {
-        axios.patch(`https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/request/${_id}`, {}, {
+        axios.patch(`https://server-side-topaz.vercel.app/request/${_id}`, {}, {
             headers: {
                 Authorization: `Bearer ${user.accessToken}`
             }

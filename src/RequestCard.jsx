@@ -7,7 +7,7 @@ const RequestCard = ({dt}) => {
     const {user} = useContext(AuthContext)
     const {  expiry,location,requestedBy, status, _id} = dt 
     const handleRemoveRequest = () => {
-        axios.patch(`https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/requestRemove/${_id}`, {}, {
+        axios.patch(`https://server-side-topaz.vercel.app/requestRemove/${_id}`, {}, {
             headers: {
                 Authorization: `Bearer ${user.accessToken}`
             }

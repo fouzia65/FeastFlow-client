@@ -22,7 +22,7 @@ const AddFood = () => {
     e.preventDefault();
     const data = { ...food, ownerEmail: user.email, status: 'available', ownerName: user.displayName, ownerPhoto: user.photoURL }
     
-    axios.post('https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/addFood', data).then(res => {
+    axios.post('https://server-side-topaz.vercel.app/addFood', data).then(res => {
       console.log(res);
         
       Swal.fire({

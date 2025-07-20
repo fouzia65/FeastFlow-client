@@ -11,7 +11,7 @@ const MyFood = () => {
     
     
     useEffect(() =>{
-        axios.get('https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/myFood' ,{
+        axios.get('https://server-side-topaz.vercel.app/myFood' ,{
              headers: {
                     authorization: `Bearer ${user.accessToken}`
                 }

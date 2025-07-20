@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { FaEyeSlash, FaRegEye } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useNavigate} from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 
 
 const SignUp = () => {
     const [open, setOpen] = useState(false)
     const [ error, setError] = useState(' ')
+    const navigate = useNavigate()
     const {createUser, setUser,updateUser, googleSignIn} = useContext(AuthContext)
     const handleSignUp = e => {
         e.preventDefault()
@@ -28,13 +29,16 @@ const SignUp = () => {
           updateUser({displayName:name , photoURL: photo}).then(() =>{
 
                 setUser({...user,displayName:name , photoURL: photo})
-               
+              navigate('/')
             })
       
        })
     }
      const handleGoogleSignIn = () =>{
-      googleSignIn().then(result => setUser(result.user))
+      googleSignIn().then(result => {
+        setUser(result.user)
+        navigate('/')
+      })
     }
 
 

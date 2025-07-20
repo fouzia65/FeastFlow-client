@@ -15,7 +15,7 @@ const Update = () => {
         const taskData = Object.fromEntries(formData.entries());
       
        const data = {...taskData,  ownerEmail : user.email , status : 'available', ownerName : user.displayName, ownerPhoto : user.photoURL}
-        fetch(`https://server-side-msrrg1p9a-fouzia-rahmans-projects.vercel.app/update/${_id}`,{
+        fetch(`https://server-side-topaz.vercel.app/update/${_id}`,{
             method: 'PUT',
             headers: {
                 'content-type' : 'application/json'

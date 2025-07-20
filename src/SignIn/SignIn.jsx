@@ -1,20 +1,25 @@
 import React, { useContext, useState } from 'react';
 import { FaEyeSlash, FaRegEye } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 
 const SignIn = () => {
     const [open, setOpen] = useState(false)
     const {signIn,  setUser,  googleSignIn  } = useContext(AuthContext)
+    const navigate = useNavigate()
     const handleSignIn = e =>{
       e.preventDefault()
          const form = e.target;
        const email = form.email.value
        const password = form.password.value
-       signIn(email, password).then(result => setUser(result.user) )
+       signIn(email, password).then(result =>{ setUser(result.user) 
+        navigate('/')
+       })
     }
     const handleGoogleSignIn = () =>{
-      googleSignIn().then(result => setUser(result.user))
+      googleSignIn().then(result => {setUser(result.user)
+        navigate('/')
+      })
     }
     return (
            <div className="min-h-screen flex items-center justify-center bg-gray-200">
