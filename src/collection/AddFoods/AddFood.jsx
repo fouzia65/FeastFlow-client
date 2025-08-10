@@ -32,7 +32,7 @@ const AddFood = () => {
         showConfirmButton: false,
         timer: 1500
       });
-    })
+    }).catch(err => console.log(err))
   };
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-2xl shadow-md">

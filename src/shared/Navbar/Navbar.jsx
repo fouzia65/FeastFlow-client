@@ -44,7 +44,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className='flex'>
-                    <a class="btn btn-ghost text-xl">FeastFlow img</a>
+                    <a class="btn btn-ghost text-xl">FeastFlow </a>
                     <img src="https://i.postimg.cc/6Qt1wr9t/p5.png" className='w-[5%]' alt="" />
                 </div>
             </div>

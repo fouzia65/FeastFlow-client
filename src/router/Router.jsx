@@ -55,7 +55,7 @@ export const router = createBrowserRouter([
         path: '/viewDetails/:foodId',
         loader: ({ params }) => fetch(`https://server-side-topaz.vercel.app/details/${params.foodId}`).then(res => res),
         // HydrateFallback: <Loading></Loading>,
-        element: <PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
+        element: <FoodDetails></FoodDetails>,
       },
       {
         path: '/myFood',

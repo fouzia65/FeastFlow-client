@@ -10,7 +10,7 @@ const Banner = () => {
             <div className='flex flex-row justify-center bg-black p-6 gap-3'>
                 <div className='w-[60%] mt-8 '>
                     <h1 className='font-bold text-white text-3xl md:ml-10 md:text-7xl '><span className='flex items-center '>Collection of <img className='w-[80px] h-[30px] md:w-[160px] md:h-[70px] rounded-2xl' src="https://i.postimg.cc/63FG7sws/Side-view-Nicks-Authentic-Italian-Spaghetti.jpg" alt="" /></span>  Delicious Food</h1>
-                    <p className='text-gray-500 flex mb-16 mt-3 justify-end'>we have a collection of all kinds of delicious food <br /> here . choose any food you like Buy it now. </p>
+                    <p className='text-gray-100 flex mb-16 mt-3 justify-end'>we have a collection of all kinds of delicious food <br /> here . choose any food you like Buy it now. </p>
                     <div className='flex justify-around  gap-8 '>
                         <img className='rounded-b-full rounded-t-full  w-[30%]' src="https://i.postimg.cc/Jz35H5p6/Bhuna-khichuri-RECIPE.jpg" alt="" />
                         <BsStars className='mt-8 text-4xl' size={80} />

@@ -1,15 +1,17 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 const FoodDetails = () => {
     const data = useLoaderData()
     const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
     const { name, image, quantity, notes, expiry, ownerName, ownerEmail, ownerPhoto, status, _id, location } = data
     const handleRequest = () => {
-        axios.patch(`https://server-side-topaz.vercel.app/request/${_id}`, {}, {
+        if(user){
+            axios.patch(`https://server-side-topaz.vercel.app/request/${_id}`, {}, {
             headers: {
                 Authorization: `Bearer ${user.accessToken}`
             }
@@ -22,7 +24,14 @@ const FoodDetails = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-        })
+        }).catch(err =>{
+            console.log(err)
+        } )
+        }
+        else{
+
+            return navigate('/signIn')
+        }
     }
     return (
         <div className="max-w-4xl mx-auto p-5 my-10 bg-white/80 backdrop-blur-md rounded-3xl shadow-lg space-y-6">

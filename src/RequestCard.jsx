@@ -20,7 +20,7 @@ const RequestCard = ({dt}) => {
                 showConfirmButton: false,
                 timer: 1500
             });
-        })
+        }).catch(err => console.log(err))
     }
     return (
            <div className="max-w-sm mx-auto bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-200">
