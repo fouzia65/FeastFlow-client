@@ -18,13 +18,14 @@ const Navbar = () => {
         })
     }
     const link = <>
-        <NavLink to={'/'}>Home</NavLink>
-        <NavLink to={'/availableFood'}>Available Foods</NavLink>
+        <NavLink to={'/'}><button className='p-3'>Home</button> </NavLink>
+        <NavLink to={'/availableFood'}> <button className='p-3'>Available Foods</button></NavLink>
+        <NavLink to={'/connect'}> <button className='p-3'>Contact us</button></NavLink>
 
         {user && <>
-            <NavLink to={'/addFoods'}>Add Food </NavLink>
-            <NavLink to={'/myFood'}>Manage My Foods</NavLink>
-            <NavLink to={'/myRequest'}>My Food Request</NavLink>
+            <NavLink to={'/addFoods'}> <button className='p-3'>Add Food </button></NavLink>
+            <NavLink to={'/myFood'}> <button className='p-3'>Manage My Foods</button></NavLink>
+            <NavLink to={'/myRequest'}> <button className='p-3'>My Food Request</button></NavLink>
         </>}
 
 

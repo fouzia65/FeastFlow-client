@@ -22,7 +22,7 @@ const AvailableFood = () => {
             </div>
 
 
-            <div className={`grid grid-cols-1 md:grid-cols-2 ${gridCols} w-[90%] mx-auto gap-8`}>
+            <div className={`grid grid-cols-1 md:grid-cols-5 ${gridCols} w-[90%] mx-auto gap-8`}>
                 {
                     data.map(info => <FoodCard key={info._id} info={info}></FoodCard>)
                 }

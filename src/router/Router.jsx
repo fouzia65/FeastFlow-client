@@ -13,8 +13,9 @@ import PrivateRoute from "../PrivateRoute";
 import MyFood from "../MyFood/MyFood";
 import Update from "../Update/Update";
 import MyRequest from "../MyRequest";
-import Loading from "../loading";
+
 import axios from "axios";
+import Connect from "../Connect";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,7 @@ export const router = createBrowserRouter([
           <MyFood></MyFood>
         </PrivateRoute>
       },
+    
       {
         path: '/update/:foodId',
         loader: ({ params }) => fetch(`https://server-side-topaz.vercel.app/details/${params.foodId}`),
@@ -74,6 +76,10 @@ export const router = createBrowserRouter([
         loader: () => fetch('https://server-side-topaz.vercel.app/request'),
         // HydrateFallback: <Loading></Loading>,
         element: <PrivateRoute><MyRequest></MyRequest></PrivateRoute>,
+      },
+      {
+         path : 'connect', 
+         element: <Connect></Connect>
       }
     ]
   },

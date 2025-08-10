@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
-import { useLoaderData, useNavigate } from 'react-router';
+import { Link, useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import Swal from 'sweetalert2';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const FoodDetails = () => {
     const data = useLoaderData()
@@ -35,6 +36,7 @@ const FoodDetails = () => {
     }
     return (
         <div className="max-w-4xl mx-auto p-5 my-10 bg-white/80 backdrop-blur-md rounded-3xl shadow-lg space-y-6">
+            <Link to={'/availableFood'}><button className='flex gap-2 items-center hover:bg-gray-200 p-3 rounded-3xl'><FaArrowLeft /> back</button></Link>
             <h1 className="text-3xl font-bold text-center mb-5 text-green-700 uppercase">Food Details</h1>
 
             <img src={image} alt={name} className="w-full rounded-2xl shadow-md" />
